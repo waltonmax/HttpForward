@@ -1,0 +1,23 @@
+version: '3'
+services:
+  httpforward:
+   restart: always
+   image: httpforward/golang:latest
+   container_name: httpforward
+   privileged: true
+   network_mode: "host"
+   ports:
+     - 6060:6060
+   logging:
+     driver: "json-file"
+     options:
+       max-size: "100m"
+   volumes:
+      - "./app:/app"
+   build:
+      context: .
+      dockerfile: Dockerfile
+
+
+
+
